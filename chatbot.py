@@ -17,10 +17,7 @@ with st.sidebar:
     st.title('🦙💬 Llama 2 Chatbot')
     st.write('This chatbot is created using the open-source Llama 2 LLM model from Meta.')
     
-    if not replicate_api or not replicate_api.startswith('r8_') or len(replicate_api) != 40:
-        st.warning('Please set a valid Replicate API token in your .env file!', icon='⚠️')
-    else:
-        st.success('API key validated!', icon='✅')
+    
         
     st.subheader('Models and parameters')
     selected_model = st.sidebar.selectbox('Choose a Llama2 model', ['Llama2-7B', 'Llama2-13B'], key='selected_model')
