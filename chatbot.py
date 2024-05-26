@@ -7,7 +7,7 @@ import replicate
 load_dotenv()
 
 # Retrieve Replicate API token from environment variables
-replicate_api = os.getenv('REPLICATE_API_TOKEN')
+REPLICATE_API_TOKEN= os.getenv('REPLICATE_API_TOKEN')
 
 # App title
 st.set_page_config(page_title="🦙💬 Llama 2 Chatbot")
@@ -16,7 +16,10 @@ st.set_page_config(page_title="🦙💬 Llama 2 Chatbot")
 with st.sidebar:
     st.title('🦙💬 Llama 2 Chatbot')
     st.write('This chatbot is created using the open-source Llama 2 LLM model from Meta.')
-    
+    headers = {
+    "Authorization": f"Token {REPLICATE_API_TOKEN}",
+    "Content-Type": "application/json"
+}
     
         
     st.subheader('Models and parameters')
