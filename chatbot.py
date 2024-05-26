@@ -7,7 +7,7 @@ import replicate
 load_dotenv()
 
 # Retrieve Replicate API token from environment variables
-REPLICATE_API_TOKEN= os.getenv('REPLICATE_API_TOKEN')
+REPLICATE_API_TOKEN = os.getenv('REPLICATE_API_TOKEN')
 
 # App title
 st.set_page_config(page_title="🦙💬 Llama 2 Chatbot")
@@ -17,7 +17,7 @@ with st.sidebar:
     st.title('🦙💬 Llama 2 Chatbot')
     st.write('This chatbot is created using the open-source Llama 2 LLM model from Meta.')
     headers = {
-    "Authorization": f"Token {REPLICATE_API_TOKEN}",
+    "Authorization": f'Token {REPLICATE_API_TOKEN}',
     "Content-Type": "application/json"
 }
     
@@ -49,11 +49,11 @@ def clear_chat_history():
 st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 
 # Define pre-prompt for Llama model
-PRE_PROMPT = "You are a helpful personal assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as a Personal Assistant."
+PRE_PROMPT = "You are a helpful personal assistant. You do not respond as 'User' or pretend to be 'User'. You only respond once as a Personal 'Assistant'.\n\n"
 
 # Function for generating LLaMA2 response
 def generate_llama2_response(prompt_input):
-    string_dialogue = ""
+    string_dialogue = '{PRE_PROMPT}'
     for dict_message in st.session_state.messages:
         if dict_message["role"] == "user":
             string_dialogue += "User: " + dict_message["content"] + "\n\n"
@@ -71,7 +71,7 @@ if st.button('Send') and prompt:
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.spinner("Thinking..."):
         response = generate_llama2_response(prompt)
-        full_response = ''
+        full_response = ''.join(response)
         for item in response:
             full_response += item
 
